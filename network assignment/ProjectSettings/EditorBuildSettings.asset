@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: edcea26eb0cf8894090071864f21dcb2
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 3d4c7210666ea3c4c9888ff1fd672b15
+  - enabled: 0
+    path: Assets/Testing/Sebastian/Prototyping_Sebastian.unity
+    guid: 3da74e0943aaad94ca7c0f03c3aec01d
+  - enabled: 0
     path: Assets/Testing/Markus/Scene/MarktestScene.unity
     guid: bb6ac7f222a30944aa27831bd7f34e2b
   m_configObjects: {}

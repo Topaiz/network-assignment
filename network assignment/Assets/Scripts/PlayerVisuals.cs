@@ -14,7 +14,7 @@ public class PlayerVisuals : AttributesSync
 
     void Start()
     {
-        NetworkManager.Multiplayer.RegisterRemoteProcedure(nameof(MyProcedure), MyProcedure);
+        Multiplayer.RegisterRemoteProcedure(nameof(MyProcedure), MyProcedure);
 
         if (!avatar.IsMe)
         {
@@ -26,7 +26,6 @@ public class PlayerVisuals : AttributesSync
             PlayerPrefs.GetFloat(PlayerPrefsVariables.Green),
             PlayerPrefs.GetFloat(PlayerPrefsVariables.Blue));
         SetColor(_color);
-        //NetworkManager.Multiplayer.RoomJoined.AddListener(OnRoomJoined);
 
         Debug.Log($"register {nameof(MyProcedure)}");
         CallMyProcedure();
@@ -36,11 +35,10 @@ public class PlayerVisuals : AttributesSync
     {
         Debug.Log(nameof(CallMyProcedure));
         ProcedureParameters parameters = new ProcedureParameters();
+        // The Alteruna documentation says you can send floats but you can't, so we use ints instead 
         parameters.Set("r", (int) Mathf.Round(_color.r * 1000));
         parameters.Set("g", (int) Mathf.Round(_color.g * 1000));
         parameters.Set("b", (int) Mathf.Round(_color.b * 1000));
-        Debug.Log(_color);
-        Debug.Log(parameters.Get("r", 0));
         Multiplayer.InvokeRemoteProcedure(nameof(MyProcedure), UserId.All, parameters);
     }
 
@@ -48,20 +46,13 @@ public class PlayerVisuals : AttributesSync
         ITransportStreamReader processor)
     {
         Debug.Log(nameof(MyProcedure));
+        // The Alteruna documentation says you can send floats but you can't, so we use ints instead 
         _color = new Color(
             parameters.Get("r", 0) / 1000f,
             parameters.Get("g", 0) / 1000f,
             parameters.Get("b", 0) / 1000f);
         SetColor(_color);
     }
-
-    // private void OnRoomJoined(Multiplayer multiplayer, Room room, User user)
-    // {
-    //     Debug.Log(nameof(OnRoomJoined));
-    //     CallMyProcedure();
-    //     BroadcastRemoteMethod(nameof(SetColor), _color);
-    //     Debug.Log(_color);
-    // }
 
     [SynchronizableMethod]
     private void SetColor(Color color)

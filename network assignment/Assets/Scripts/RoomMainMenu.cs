@@ -82,7 +82,7 @@ public class RoomMainMenu : MonoBehaviour
                 _roomObjects.Add(entry);
 
                 entry.GetComponentInChildren<Text>().text = room.Name;
-                entry.GetComponentInChildren<Button>().onClick.AddListener(() => { SceneManager.LoadScene("Prototyping_Sebastian"); });
+                entry.GetComponentInChildren<Button>().onClick.AddListener(() => { SceneManager.LoadScene("GameScene"); });
                 entry.GetComponentInChildren<Button>().onClick.AddListener(() => { room.Join(); });
             }
         }
@@ -125,7 +125,7 @@ public class RoomMainMenu : MonoBehaviour
             _aump.RoomListUpdated.AddListener(UpdateList);
             _aump.RoomJoined.AddListener(JoinedRoom);
             _aump.RoomLeft.AddListener(LeftRoom);
-            StartButton.onClick.AddListener(() => { SceneManager.LoadScene("Prototyping_Sebastian"); });
+            StartButton.onClick.AddListener(() => { SceneManager.LoadScene("GameScene"); });
             StartButton.onClick.AddListener(() => { _aump.JoinOnDemandRoom(); });
             LeaveButton.onClick.AddListener(() => { _aump.CurrentRoom?.Leave(); });
         }
