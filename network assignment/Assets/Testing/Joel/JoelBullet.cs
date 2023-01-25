@@ -19,7 +19,7 @@ public class JoelBullet : MonoBehaviour
         if (GetComponent<Rigidbody2D>() != null) 
             rb = GetComponent<Rigidbody2D>();
         
-        spawner = GameObject.FindGameObjectWithTag("Multiplayer").GetComponent<Alteruna.Spawner>();
+        spawner = NetworkManager.Multiplayer.GetComponent<Alteruna.Spawner>();
     }
     
     // Update is called once per frame
