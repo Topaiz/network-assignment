@@ -8,27 +8,28 @@ public class PlayerScore : AttributesSync
     [SynchronizableField]
     public int score = 0;
 
-    [SerializeField]
-    private int scoreToWin = 10;
+    public int winScore = 10;
 
     public Alteruna.Avatar avatar;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (avatar.IsMe && Input.GetKeyUp(KeyCode.P))
+        {
+            score++;
+        }
+        //if (avatar.IsMe && score >= winScore)
+        //{
+        //    BroadcastRemoteMethod("PlayerWon");
+        //}
     }
 
-    public bool AddScore(int add)
+    [SynchronizableMethod]
+    private void PlayerWon()
     {
-        score += add;
-        // Has player won?
-        return (score >= scoreToWin);
+        Debug.Log("A player won with score: " + score);
+        score = -1;
     }
+
 }
