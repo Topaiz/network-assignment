@@ -1,4 +1,4 @@
-using Alteruna;
+
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +7,6 @@ public class ScoreDisplay : MonoBehaviour
     [SerializeField]
     private TextMeshPro scoreText;
 
-    [SerializeField]
     private PlayerScore playerScore;
 
     // Start is called before the first frame update
@@ -30,8 +29,13 @@ public class ScoreDisplay : MonoBehaviour
         }
         else if (playerScore.score >= playerScore.winScore)
         {
-            // Get winning player name
-            string playerName = this.playerScore.avatar.Possessor.Name;
+            string playerName = "Player name without reference!";
+            if (this.playerScore.avatar != null)
+            {
+                // Get winning player name
+                playerName = this.playerScore.avatar.Possessor.Name;
+            }
+
             scoreText.text = "Player " + playerName + " won!! Woop woop!";
             // TODO make game go pause pause?
         }

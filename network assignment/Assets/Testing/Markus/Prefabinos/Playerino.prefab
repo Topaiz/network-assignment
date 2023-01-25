@@ -459,7 +459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 3336803720683984508}
-  playerScore: {fileID: 0}
 --- !u!114 &8646421398395085058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,4 +489,4 @@ MonoBehaviour:
   Reliability: 1
   score: 0
   winScore: 4
-  avatar: {fileID: 6609507390321484798}
+  avatar: {fileID: 0}

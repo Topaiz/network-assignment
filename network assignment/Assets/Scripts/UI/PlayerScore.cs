@@ -12,18 +12,22 @@ public class PlayerScore : AttributesSync
 
     public Alteruna.Avatar avatar;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (avatar.IsMe && Input.GetKeyUp(KeyCode.P))
-        {
-            score++;
-        }
-        //if (avatar.IsMe && score >= winScore)
-        //{
-        //    BroadcastRemoteMethod("PlayerWon");
-        //}
+        avatar = GetComponentInParent<Alteruna.Avatar>();
     }
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (avatar.IsMe && Input.GetKeyUp(KeyCode.P))
+    //    {
+    //        score++;
+    //    }
+    //    //if (avatar.IsMe && score >= winScore)
+    //    //{
+    //    //    BroadcastRemoteMethod("PlayerWon");
+    //    //}
+    //}
 
     [SynchronizableMethod]
     private void PlayerWon()
