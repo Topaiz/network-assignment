@@ -18,7 +18,7 @@ public class JoelShoot : MonoBehaviour {
     private JoelRespawn respawn;
 
     private void Start() {
-        spawner = GameObject.FindGameObjectWithTag("Multiplayer").GetComponent<Spawner>();
+        spawner = NetworkManager.Multiplayer.gameObject.GetComponent<Spawner>();
         respawn = GameObject.Find("Respawn").GetComponent<JoelRespawn>();
         respawn.Players.Add(gameObject);
     }

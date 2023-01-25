@@ -19,7 +19,7 @@ public class JoelRespawn : MonoBehaviour {
     
 
     private void Awake() {
-        spawner = GameObject.Find("Multiplayer").GetComponent<Alteruna.Spawner>();
+        spawner = NetworkManager.Multiplayer.gameObject.GetComponent<Alteruna.Spawner>();
         multiplayer = GameObject.Find("Multiplayer").GetComponent<Alteruna.Multiplayer>();
     }
 
