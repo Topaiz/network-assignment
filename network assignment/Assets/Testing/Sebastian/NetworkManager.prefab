@@ -68,7 +68,7 @@ MonoBehaviour:
   SpawnAvatarOnJoin: 1
   AvatarPrefab: {fileID: 2842307495284492017, guid: f7b3a582190e2d2409084eca814fde6d, type: 3}
   AvatarSpawnLocation: {fileID: 0}
-  SpawnAvatarPerIndex: 1
+  SpawnAvatarPerIndex: 0
   AvatarSpawnLocations:
   - {fileID: 0}
   - {fileID: 0}
