@@ -1,3 +1,4 @@
+using Alteruna;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.Pool;
 public class MTestPlayer : MonoBehaviour
 {
     public Alteruna.Avatar Avatar;
+    public int health = 5;
 
     [SerializeField]
     private MTestCamera mCamera;
@@ -13,7 +15,9 @@ public class MTestPlayer : MonoBehaviour
     [SerializeField]
     private int moveSpeed = 5;
 
-    private Transform playerTransform;
+    [SerializeField]
+    private Transform moveTransform;
+    private Transform rotTransform;
 
     Vector2 mousePos;
     Vector2 objectPos;
@@ -21,8 +25,7 @@ public class MTestPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Avatar = GetComponent<Alteruna.Avatar>();
-        playerTransform = transform;
+        rotTransform = transform;
 
         GameObject goCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mCamera = goCamera.GetComponent<MTestCamera>();
@@ -44,19 +47,19 @@ public class MTestPlayer : MonoBehaviour
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
         
-        playerTransform.position += vInput *
-            moveSpeed * Time.deltaTime * playerTransform.up;
-        playerTransform.position += hInput *
-            moveSpeed * Time.deltaTime * playerTransform.right;
+        moveTransform.position += vInput *
+            moveSpeed * Time.deltaTime * rotTransform.up;
+        moveTransform.position += hInput *
+            moveSpeed * Time.deltaTime * rotTransform.right;
     }
 
     public void UpdateRotation()
     {
         mousePos = Input.mousePosition;
-        objectPos = Camera.main.WorldToScreenPoint(playerTransform.position);
+        objectPos = Camera.main.WorldToScreenPoint(rotTransform.position);
         mousePos.x -= objectPos.x;
         mousePos.y -= objectPos.y;
         float angle = Mathf.Atan2(mousePos.x, mousePos.y) * Mathf.Rad2Deg;
-        playerTransform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
+        rotTransform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
     }
 }

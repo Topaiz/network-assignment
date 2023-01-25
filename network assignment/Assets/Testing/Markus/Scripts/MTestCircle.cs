@@ -58,7 +58,6 @@ public class MTestCircle : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Be eaten by: " + col.gameObject.name);
             col.gameObject.GetComponent<MTestCircle>().IncreaseSize(size);
             Destroy(gameObject);
         }
