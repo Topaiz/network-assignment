@@ -23,19 +23,6 @@ public class MTestHealth1 : AttributesSync
         canvasUI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MTestCanvasUI>();
     }
 
-    private void Update()
-    {
-        if (avatar.IsMe)
-        {
-
-            if (Input.GetKeyUp(KeyCode.K))
-            {
-                score -= damage;
-                BroadcastMessage("Die");
-                //Die();
-            }
-        }
-    }
     [SynchronizableMethod]
     private void Die()
     {

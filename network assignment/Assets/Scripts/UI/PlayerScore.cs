@@ -8,19 +8,28 @@ public class PlayerScore : AttributesSync
     [SynchronizableField]
     public int score = 0;
 
-    public Alteruna.Avatar avatar;
+    public int winScore = 10;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Alteruna.Avatar avatar;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (avatar.IsMe && Input.GetKeyUp(KeyCode.P))
+        {
+            score++;
+        }
+        //if (avatar.IsMe && score >= winScore)
+        //{
+        //    BroadcastRemoteMethod("PlayerWon");
+        //}
     }
 
+    [SynchronizableMethod]
+    private void PlayerWon()
+    {
+        Debug.Log("A player won with score: " + score);
+        score = -1;
+    }
 
 }

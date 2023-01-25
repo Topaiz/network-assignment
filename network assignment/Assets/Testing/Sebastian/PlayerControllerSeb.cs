@@ -7,6 +7,7 @@ using Avatar = Alteruna.Avatar;
 public class PlayerControllerSeb : MonoBehaviour
 {
     [SerializeField] private Avatar avatar;
+
     // [SerializeField] private Spawner spawner;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private float speed = 1f;
