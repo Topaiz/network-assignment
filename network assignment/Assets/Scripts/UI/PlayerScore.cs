@@ -8,6 +8,9 @@ public class PlayerScore : AttributesSync
     [SynchronizableField]
     public int score = 0;
 
+    [SerializeField]
+    private int scoreToWin = 10;
+
     public Alteruna.Avatar avatar;
 
     // Start is called before the first frame update
@@ -22,5 +25,10 @@ public class PlayerScore : AttributesSync
         
     }
 
-
+    public bool AddScore(int add)
+    {
+        score += add;
+        // Has player won?
+        return (score >= scoreToWin);
+    }
 }
