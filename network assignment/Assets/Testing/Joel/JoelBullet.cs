@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JoelBullet : MonoBehaviour
@@ -9,6 +10,9 @@ public class JoelBullet : MonoBehaviour
     private Alteruna.Spawner spawner;
 
     [SerializeField] private int damage = 50;
+    [SerializeField] private float speed = 20;
+
+    public GameObject Shooter;
 
     void Start()
     {
@@ -20,17 +24,25 @@ public class JoelBullet : MonoBehaviour
     
     // Update is called once per frame
     private void Update() {
-        transform.localPosition += transform.up * 10 * Time.deltaTime;
+        transform.localPosition += transform.up * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
+        if (col.transform.parent.gameObject == Shooter) 
+            return;
+        
         if (col.gameObject.transform.parent.CompareTag("Player")) {
             col.gameObject.transform.parent.Find("Health").GetComponent<JoelHealth>().TakeDamage(damage);
-            print("OUCH!");
+            if (col.gameObject.transform.parent.Find("Health").GetComponent<JoelHealth>().CurHealth <= 0) {
+                if (Shooter != null)
+                    Shooter.GetComponentInChildren<PlayerScore>().score++;
+            }
         }
         
-        //Check list if object is already despawned or whatever
+        //Check list if object is already despawned or whateveridk how to do it help
         if (gameObject != null)
+            //Destroy(gameObject);
             spawner.Despawn(gameObject);
+            
     }
 }

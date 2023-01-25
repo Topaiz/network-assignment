@@ -15,8 +15,10 @@ public class JoelHealth : Synchronizable {
     private float oldHealthFill;
 
     private JoelRespawn respawn;
+    private Alteruna.Avatar avatar;
     
     private void Awake() {
+        avatar = transform.parent.GetComponent<Alteruna.Avatar>();
         CurHealth = MaxHealth;
         HealthFill = healthbar.fillAmount;
         respawn = GameObject.Find("Respawn").GetComponent<JoelRespawn>();
@@ -44,7 +46,10 @@ public class JoelHealth : Synchronizable {
     void Update()
     {
         healthbar.fillAmount = CurHealth / MaxHealth;
+        transform.rotation = Quaternion.identity;
+        transform.position = new Vector2(transform.parent.position.x, transform.parent.position.y + 1);
         
+
         if (CurHealth != oldCurHealth) {
             oldCurHealth = CurHealth;
             Commit();
@@ -56,13 +61,18 @@ public class JoelHealth : Synchronizable {
         }
 
         if (CurHealth <= 0) {
+            //BroadcastRemoteMethod("Death");
+            //InvokeRemoteMethod("");
             Death();
         }
 
         SyncUpdate();
     }
 
+    [SynchronizableMethod]
     void Death() {
+        if (avatar != transform.parent.GetComponent<JoelPlayer>().avatar)
+            return;
         respawn.Respawn(transform.parent.gameObject, this);
     }
 }
