@@ -36,8 +36,9 @@ public class ScoreDisplay : MonoBehaviour
                 playerName = this.playerScore.avatar.Possessor.Name;
             }
 
-            scoreText.text = "Player " + playerName + " won!! Woop woop!";
+            scoreText.text = "Player \n" + playerName + "\n \n won!! Woop woop!";
             // TODO make game go pause pause?
+            Time.timeScale = 0.01f;
         }
     }
 }
