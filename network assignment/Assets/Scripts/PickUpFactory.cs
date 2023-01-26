@@ -19,7 +19,7 @@ public class PickUpFactory : MonoBehaviour
     {
         spawner = NetworkManager.Multiplayer.gameObject.GetComponent<Alteruna.Spawner>();
         spawner.SpawnableObjects.Add(foodPrefab);
-        //spawner.ForceSync = true;
+        spawner.ForceSync = true;
         scale = new Vector3(0.5f, 0.5f, 1f);
         curTimer = maxTimer;
     }

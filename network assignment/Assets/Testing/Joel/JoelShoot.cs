@@ -26,6 +26,8 @@ public class JoelShoot : MonoBehaviour {
         spawner = NetworkManager.Multiplayer.gameObject.GetComponent<Spawner>();
         respawn = GameObject.Find("Respawn").GetComponent<JoelRespawn>();
         respawn.Players.Add(gameObject);
+        spawner.ForceSync = true;
+        
     }
 
     private void Update() {
@@ -36,7 +38,8 @@ public class JoelShoot : MonoBehaviour {
             curShootCooldown -= (Time.deltaTime * (baseFireRate + FireRateModifier));
         }
         
-        if (Input.GetKey(KeyCode.Mouse0) && curShootCooldown <= 0 && respawn.Players.Count > 1) {
+        //How many players can joing before you can shoot (bcuz bug)
+        if (Input.GetKey(KeyCode.Mouse0) && curShootCooldown <= 0 && respawn.Players.Count > 0) {
             Shoot();
             curShootCooldown = maxShootCooldown;
         }
