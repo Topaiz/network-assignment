@@ -29,7 +29,7 @@ public class ScoreDisplay : MonoBehaviour
         }
         else if (playerScore.score >= playerScore.winScore)
         {
-            string playerName = "Player name without reference!";
+            string playerName = "that wants to be anonymous";
             if (this.playerScore.avatar != null)
             {
                 // Get winning player name

@@ -23,10 +23,10 @@ public class PlayerScore : AttributesSync
     //    {
     //        score++;
     //    }
-    //    //if (avatar.IsMe && score >= winScore)
-    //    //{
-    //    //    BroadcastRemoteMethod("PlayerWon");
-    //    //}
+    ////    if (avatar.IsMe && score >= winScore)
+    ////    {
+    ////        BroadcastRemoteMethod("PlayerWon");
+    ////    }
     //}
 
     [SynchronizableMethod]
