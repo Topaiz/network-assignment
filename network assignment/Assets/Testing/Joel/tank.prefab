@@ -185,6 +185,10 @@ MonoBehaviour:
   bullets: []
   indexToSpawn: 0
   firepoint: {fileID: 3574294294870098734}
+  maxShootCooldown: 0.5
+  curShootCooldown: 0
+  baseFireRate: 1
+  FireRateModifier: 0
   avatar: {fileID: 2842307495284492017}
 --- !u!1 &4961310759717042214
 GameObject:
@@ -541,7 +545,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2546726859301277273}
-  playerScore: {fileID: 9206523753980258345}
 --- !u!114 &6090612973040780149
 MonoBehaviour:
   m_ObjectHideFlags: 0

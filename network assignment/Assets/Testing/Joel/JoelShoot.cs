@@ -9,6 +9,11 @@ public class JoelShoot : MonoBehaviour {
     [SerializeField] private int indexToSpawn;
     [SerializeField] private Transform firepoint;
 
+    [SerializeField] private float maxShootCooldown;
+    [SerializeField] private float curShootCooldown;
+    [SerializeField] private float baseFireRate;
+    public float FireRateModifier;
+
     public Alteruna.Avatar avatar;
     private Spawner spawner;
 
@@ -27,8 +32,13 @@ public class JoelShoot : MonoBehaviour {
         if (!avatar.IsMe)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && respawn.Players.Count > 1) {
+        if (curShootCooldown > 0) {
+            curShootCooldown -= (Time.deltaTime * (baseFireRate + FireRateModifier));
+        }
+        
+        if (Input.GetKey(KeyCode.Mouse0) && curShootCooldown <= 0 && respawn.Players.Count > 1) {
             Shoot();
+            curShootCooldown = maxShootCooldown;
         }
     }
 
