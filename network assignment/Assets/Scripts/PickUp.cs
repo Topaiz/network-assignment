@@ -36,7 +36,7 @@ public class PickUp : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //collision.GetComponentInChildren<PlayerDataSynchronizable>().Score += ScoreAmount;
-
+            //collision.GetComponentInChildren<JoelShoot>().
             Destroy(this.gameObject);
         }
     }

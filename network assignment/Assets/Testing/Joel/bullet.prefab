@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8844530708712826202}
   - component: {fileID: 5520449362014383485}
   m_Layer: 0
-  m_Name: tank 3
+  m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
