@@ -6,10 +6,10 @@ using Alteruna;
 public class PickUp : MonoBehaviour
 {
     public int level;
-    private static int baseScore = 50;
+    private static float baseFireRateModifier = 0.1f;
     private SpriteRenderer spriteRenderer;
 
-    public int ScoreAmount { get => baseScore * level; }
+    public float ModifyFireRate { get => baseFireRateModifier * level; }
 
     private void Awake()
     {
@@ -35,8 +35,7 @@ public class PickUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //collision.GetComponentInChildren<PlayerDataSynchronizable>().Score += ScoreAmount;
-            //collision.GetComponentInChildren<JoelShoot>().
+            collision.transform.parent.GetComponentInChildren<JoelShoot>().FireRateModifier += ModifyFireRate;
             Destroy(this.gameObject);
         }
     }
