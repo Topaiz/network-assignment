@@ -102,7 +102,8 @@ public class PlayerSettings : MonoBehaviour
 
     private string GetAName()
     {
-        string name = multiplayer.Me.Name;
+        //Changed from 'string name = multplayer.Me.Name' to Below thingie
+        string name = NetworkManager.Multiplayer.Me.Name;
         if (string.IsNullOrWhiteSpace(name))
         {
             name = "Player";
