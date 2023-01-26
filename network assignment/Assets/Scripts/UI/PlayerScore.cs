@@ -15,6 +15,7 @@ public class PlayerScore : AttributesSync
     private void Start()
     {
         avatar = GetComponentInParent<Alteruna.Avatar>();
+
     }
     // Update is called once per frame
     //void Update()
