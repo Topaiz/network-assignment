@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Alteruna;
+using Unity.VisualScripting;
 
 public class JoelShoot : MonoBehaviour {
     [SerializeField] public List<GameObject> bullets = new List<GameObject>();
@@ -38,7 +39,6 @@ public class JoelShoot : MonoBehaviour {
             curShootCooldown -= (Time.deltaTime * (baseFireRate + FireRateModifier));
         }
         
-        //How many players can joing before you can shoot (bcuz bug)
         if (Input.GetKey(KeyCode.Mouse0) && curShootCooldown <= 0 && respawn.Players.Count > 0) {
             Shoot();
             curShootCooldown = maxShootCooldown;
@@ -49,7 +49,8 @@ public class JoelShoot : MonoBehaviour {
     void Shoot() {
         GameObject bullet = spawner.Spawn(indexToSpawn, firepoint.position, firepoint.rotation,
             new Vector3(0.1f, 0.1f, 0.1f));
-        bullet.GetComponent<JoelBullet>().Shooter = transform.parent.gameObject;
+        bullet.GetComponent<JoelBullet>().Shooter = gameObject.transform.parent.GetComponentInChildren<JoelHealth>();
+        print(transform.parent.name);
         
         bullets.Add(bullet);
     }

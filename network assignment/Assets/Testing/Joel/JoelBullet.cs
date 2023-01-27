@@ -12,7 +12,7 @@ public class JoelBullet : MonoBehaviour
     [SerializeField] private int damage = 50;
     [SerializeField] private float speed = 20;
 
-    public GameObject Shooter;
+    public JoelHealth Shooter;
 
     void Start()
     {
@@ -20,6 +20,7 @@ public class JoelBullet : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
         
         spawner = NetworkManager.Multiplayer.GetComponent<Alteruna.Spawner>();
+        spawner.ForceSync = true;
     }
     
     // Update is called once per frame
@@ -28,8 +29,25 @@ public class JoelBullet : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
-        if (col.transform.parent.gameObject == Shooter) 
+        
+        //Food
+        if (col.gameObject.transform.parent == null) {
             return;
+        }
+        
+        //Walls
+        if (col.gameObject.transform.parent.GetComponentInChildren<JoelHealth>() == null) {
+            spawner.Despawn(gameObject);
+            return;
+        }
+        
+        //Never works :^(
+        if (col.gameObject.transform.parent.GetComponentInChildren<JoelHealth>() == Shooter) {
+            spawner.Despawn(gameObject);
+            print("SHOT SELF OOPSIE");
+            return;
+        }
+
         
         if (col.gameObject.transform.parent.CompareTag("Player")) {
             col.gameObject.transform.parent.Find("Health").GetComponent<JoelHealth>().TakeDamage(damage);
@@ -39,9 +57,7 @@ public class JoelBullet : MonoBehaviour
             }
         }
         
-        //Check list if object is already despawned or whateveridk how to do it help
         if (gameObject != null)
-            //Destroy(gameObject);
             spawner.Despawn(gameObject);
             
     }
